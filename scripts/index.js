@@ -50,7 +50,7 @@ const cardsConteiner = document.querySelector('.cards__list');
 const templateCard = document.querySelector('#card-template');
 
 //функция лайка
-function likeToggle(e) {
+function handleLikeButton(e) {
     e.target.classList.toggle('card__like-button_active');
 }
 //функция удаления карточки
@@ -60,12 +60,13 @@ function handleTrash(e) {
 
 //попап изображения
 const popupImage = document.querySelector('#popup-image-open');
-const openImage = popupImage.querySelector('.popup__image');
+const cardElement = popupImage.querySelector('.popup__image');
 const descriptionImage = popupImage.querySelector('.popup__image-description');
 
 //функция открытия попапа изображения
 function imageCardToggle(places) {
-    openImage.src = places.link;
+    cardElement.alt = places.name;
+    cardElement.src = places.link;
     descriptionImage.textContent = places.name;
     openPopup(popupImage);
 }
@@ -73,7 +74,7 @@ function imageCardToggle(places) {
 //навешиваем слушатели на элементы карточки
 function setEventListeners(card, places) {
     const likeButton = card.querySelector('.card__like-button');
-    likeButton.addEventListener('click', likeToggle);
+    likeButton.addEventListener('click', handleLikeButton);
 
     const deleteButton = card.querySelector('.card__delete-button');
     deleteButton.addEventListener('click', handleTrash);
@@ -85,13 +86,13 @@ function setEventListeners(card, places) {
 }
 
 // функция создания карточки
-function createCard(places) {
+function createCard(place) {
     const card = templateCard.content.querySelector('.card').cloneNode(true);
     const cardTitle = card.querySelector('.card__title');
-    cardTitle.textContent = places.name;
+    cardTitle.textContent = place.name;
     const cardImage = card.querySelector('.card__image');
-    cardImage.src = places.link;
-    setEventListeners(card, places);
+    cardImage.src = place.link;
+    setEventListeners(card, place);
     return card;
 }
 //функция отрисовки и добавления карточки
