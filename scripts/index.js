@@ -128,6 +128,8 @@ function addNewCard(evt) {
     evt.preventDefault();
     renderCard({name: newPlaceName.value, link: newPlaceLink.value});
     closePopup(popupNewCard)
+    newPlaceName.value = "";
+    newPlaceLink.value = "";
 }
 
 //слушатель события submit на форме
