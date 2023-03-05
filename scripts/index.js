@@ -8,8 +8,7 @@ const profileDescription = document.querySelector('.profile__description');
 const nameInput = document.querySelector('.popup__input_text_name')
 const jobInput = document.querySelector('.popup__input_text_job')
 
-nameInput.value = profileName.textContent;
-jobInput.value = profileDescription.textContent;
+
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
@@ -21,6 +20,8 @@ function closePopup(popup) {
 
 
 profileEditButton.addEventListener('click', () => {
+    nameInput.value = profileName.textContent;
+    jobInput.value = profileDescription.textContent;
     openPopup(popupEditProfile)
 });
 buttonCloseProfile.addEventListener('click', () => {
@@ -36,37 +37,12 @@ function handleFormSubmit (evt) {
 }
 
 //форма изменеия профиля
-let formElement = document.querySelector('.popup__form-edit')
+const formElement = document.querySelector('.popup__form-edit')
 formElement.addEventListener('submit', handleFormSubmit);
 
 
 //добавление карточек из коробки
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
+
 
 //контейнер для карточек
 const cardsConteiner = document.querySelector('.cards__list');
@@ -87,7 +63,7 @@ const popupImage = document.querySelector('#popup-image-open');
 const openImage = popupImage.querySelector('.popup__image');
 const descriptionImage = popupImage.querySelector('.popup__image-description');
 
-//функция открытия попапа карточки
+//функция открытия попапа изображения
 function imageCardToggle(places) {
     openImage.src = places.link;
     descriptionImage.textContent = places.name;
@@ -135,6 +111,8 @@ const newCardButton = document.querySelector('.profile__add-button');
 newCardButton.addEventListener('click', () => {
     openPopup(popupNewCard)
 });
+
+
 const newCardCloseButton = popupNewCard.querySelector('.popup__close-button');
 newCardCloseButton.addEventListener('click', () => {
     closePopup(popupNewCard)
