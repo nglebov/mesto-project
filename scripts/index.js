@@ -11,16 +11,20 @@ const jobInput = document.querySelector('.popup__input_text_job')
 nameInput.value = profileName.textContent;
 jobInput.value = profileDescription.textContent;
 
-//функция закрытия и открытия попапа
-function popupToggle(popup) {
-    popup.classList.toggle('popup_opened');
+function openPopup(popup) {
+    popup.classList.add('popup_opened');
 }
 
+function closePopup(popup) {
+    popup.classList.remove('popup_opened');
+}
+
+
 profileEditButton.addEventListener('click', () => {
-    popupToggle(popupEditProfile)
+    openPopup(popupEditProfile)
 });
 buttonCloseProfile.addEventListener('click', () => {
-    popupToggle(popupEditProfile)
+    closePopup(popupEditProfile)
 });
 
 //функция изменения профиля
@@ -28,7 +32,7 @@ function handleFormSubmit (evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileDescription.textContent = jobInput.value;
-    popupToggle(popupEditProfile)
+    closePopup(popupEditProfile)
 }
 
 //форма изменеия профиля
@@ -87,7 +91,7 @@ const descriptionImage = popupImage.querySelector('.popup__image-description');
 function imageCardToggle(places) {
     openImage.src = places.link;
     descriptionImage.textContent = places.name;
-    popupToggle(popupImage);
+    openPopup(popupImage);
 }
 
 //навешиваем слушатели на элементы карточки
@@ -129,11 +133,11 @@ const popupNewCard = document.querySelector('#popup-new-card');
 
 const newCardButton = document.querySelector('.profile__add-button');
 newCardButton.addEventListener('click', () => {
-    popupToggle(popupNewCard)
+    openPopup(popupNewCard)
 });
 const newCardCloseButton = popupNewCard.querySelector('.popup__close-button');
 newCardCloseButton.addEventListener('click', () => {
-    popupToggle(popupNewCard)
+    closePopup(popupNewCard)
 });
 
 //название и место из формы новой карточки
@@ -144,7 +148,7 @@ const newPlaceLink = popupNewCard.querySelector('.popup__input_place_link');
 function addNewCard(evt) {
     evt.preventDefault();
     renderCard({name: newPlaceName.value, link: newPlaceLink.value});
-    popupToggle(popupNewCard)
+    closePopup(popupNewCard)
 }
 
 //слушатель события submit на форме
@@ -154,5 +158,5 @@ formNewCard.addEventListener('submit', addNewCard);
 //открытие попапа карточки
 const imageCloseButton = popupImage.querySelector('.popup__close-button');
 imageCloseButton.addEventListener('click', () => {
-    popupToggle(popupImage)
+    closePopup(popupImage)
 });
