@@ -92,6 +92,7 @@ function createCard(place) {
     cardTitle.textContent = place.name;
     const cardImage = card.querySelector('.card__image');
     cardImage.src = place.link;
+    cardImage.alt = place.name;
     setEventListeners(card, place);
     return card;
 }
