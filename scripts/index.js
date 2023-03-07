@@ -64,7 +64,7 @@ const cardElement = popupImage.querySelector('.popup__image');
 const descriptionImage = popupImage.querySelector('.popup__image-description');
 
 //функция открытия попапа изображения
-function imageCardToggle(places) {
+function openCardImage(places) {
     cardElement.alt = places.name;
     cardElement.src = places.link;
     descriptionImage.textContent = places.name;
@@ -81,7 +81,7 @@ function setEventListeners(card, places) {
 
     const cardImage = card.querySelector('.card__image');
     cardImage.addEventListener('click', () => {
-        imageCardToggle(places)
+        openCardImage(places)
     });
 }
 
@@ -134,7 +134,7 @@ function addNewCard(evt) {
 }
 
 //слушатель события submit на форме
-let formNewCard = popupNewCard.querySelector('.popup__form-edit');
+const formNewCard = popupNewCard.querySelector('.popup__form-edit');
 formNewCard.addEventListener('submit', addNewCard);
 
 //открытие попапа карточки
