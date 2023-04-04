@@ -1,32 +1,26 @@
+import { 
+    initialCards, 
+    profileEditButton, 
+    popupEditProfile, 
+    buttonCloseProfile, 
+    profileName, 
+    profileDescription, 
+    nameInput, 
+    jobInput } from "./constants.js";
+import {openPopup, closePopup, setEventListenersPopup} from "./modal.js";
+
 //изменение профиля
-const profileEditButton = document.querySelector('.profile__edit-button');
-const popupEditProfile = document.querySelector('#popup-edit-profile');
-const buttonCloseProfile = popupEditProfile.querySelector('.popup__close-button');
-
-const profileName = document.querySelector('.profile__name');
-const profileDescription = document.querySelector('.profile__description');
-const nameInput = document.querySelector('.popup__input_text_name')
-const jobInput = document.querySelector('.popup__input_text_job')
-
-
-
-function openPopup(popup) {
-    popup.classList.add('popup_opened');
-}
-
-function closePopup(popup) {
-    popup.classList.remove('popup_opened');
-}
-
 
 profileEditButton.addEventListener('click', () => {
     nameInput.value = profileName.textContent;
     jobInput.value = profileDescription.textContent;
+    setEventListenersPopup(popupEditProfile);
     openPopup(popupEditProfile)
+    
 });
-buttonCloseProfile.addEventListener('click', () => {
+/*buttonCloseProfile.addEventListener('click', () => {
     closePopup(popupEditProfile)
-});
+});*/
 
 //функция изменения профиля
 function handleFormSubmit (evt) {
@@ -49,10 +43,11 @@ const cardsConteiner = document.querySelector('.cards__list');
 //шаблон карточки
 const templateCard = document.querySelector('#card-template');
 
-//функция лайка
+
 function handleLikeButton(e) {
     e.target.classList.toggle('card__like-button_active');
 }
+
 //функция удаления карточки
 function handleTrash(e) {
     e.target.closest('.card').remove();
@@ -108,17 +103,12 @@ initialCards.forEach((places) => {
 
 //форма добавления новой карточки
 const popupNewCard = document.querySelector('#popup-new-card');
-
 const newCardButton = document.querySelector('.profile__add-button');
 newCardButton.addEventListener('click', () => {
+    setEventListenersPopup(popupNewCard);
     openPopup(popupNewCard)
 });
 
-
-const newCardCloseButton = popupNewCard.querySelector('.popup__close-button');
-newCardCloseButton.addEventListener('click', () => {
-    closePopup(popupNewCard)
-});
 
 //название и место из формы новой карточки
 const newPlaceName = popupNewCard.querySelector('.popup__input_place_name');
@@ -137,8 +127,5 @@ function addNewCard(evt) {
 const formNewCard = popupNewCard.querySelector('.popup__form-edit');
 formNewCard.addEventListener('submit', addNewCard);
 
-//открытие попапа карточки
-const imageCloseButton = popupImage.querySelector('.popup__close-button');
-imageCloseButton.addEventListener('click', () => {
-    closePopup(popupImage)
-});
+//закрытие попапа изображения
+setEventListenersPopup(popupImage);
