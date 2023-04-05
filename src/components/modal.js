@@ -30,14 +30,4 @@ export const setEventListenersPopup = (popup) => {
 }
 
 
-//закрытие попапа кликом на оверлэй
-/*
-import {popupItems} from "./constants.js";
-popupItems.forEach(popup => {
-    popup.addEventListener('click', (event) => {
-        if (event.target === event.currentTarget) {
-            closePopup(popup);
-        }
-    })
-})*/
 
