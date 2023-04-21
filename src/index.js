@@ -1,4 +1,5 @@
-import { 
+
+import {
     initialCards,
     profileName, 
     profileDescription, 
@@ -8,9 +9,11 @@ import {
     popupEditProfile,
     popupNewCard,
     newPlaceName,
-    newPlaceLink} from "./utils.js";
-import {openPopup, closePopup, setEventListenersPopup} from "./modal.js";
-import {renderCards} from "./card.js";
+    newPlaceLink,
+    validationConfig} from "./components/utils.js";
+import {openPopup, closePopup, setEventListenersPopup} from "./components/modal.js";
+import {renderCards} from "./components/card.js";
+import {enableValidation} from "./components/validate.js";
 
 //отрисовка карточек из коробки
 renderCards(initialCards);
@@ -34,8 +37,8 @@ function handleFormSubmit (evt) {
     closePopup(popupEditProfile)
 }
 
-//форма изменеия профиля
-const formElement = document.querySelector('.popup__form-edit')
+//форма изменения профиля
+const formElement = document.querySelector('.popup__form')
 formElement.addEventListener('submit', handleFormSubmit);
 
 
@@ -56,6 +59,8 @@ function addNewCard(event) {
 }
 
 //форма добавления новой карточки
-const formNewCard = popupNewCard.querySelector('.popup__form-edit');
+const formNewCard = popupNewCard.querySelector('.popup__form');
 formNewCard.addEventListener('submit', addNewCard);
 
+//активация валидации
+enableValidation(validationConfig);
