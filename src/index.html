@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="pages/index.css">
   <title>Mesto</title>
 </head>
 <body class="body">
@@ -11,14 +10,14 @@
 
     <header class="header">
       <a href="/">
-        <img class="header__logo" src="images/logo.svg" alt="Место">
+        <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Место">
       </a>
     </header>
 
     <main class="content">
       <section class="profile">
         <div class="profile__card">
-          <img class="profile__avatar" src="images/avatar.png" alt="Фото">
+          <img class="profile__avatar" src="<%=require('./images/avatar.png')%>" alt="Фото">
           <div class="profile__text">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__description">Исследователь океана</p>
@@ -99,6 +98,5 @@
     </section>
 
  </div>
-  <script type="module" src="index.js"></script>
   </body>
   </html>
