@@ -1,4 +1,4 @@
-import './pages/index.css';
+import '../pages/index.css';
 import {
     initialCards,
     profileName, 
@@ -10,10 +10,10 @@ import {
     popupNewCard,
     newPlaceName,
     newPlaceLink,
-    validationConfig} from "./components/utils.js";
-import {openPopup, closePopup, setEventListenersPopup} from "./components/modal.js";
-import {renderCards} from "./components/card.js";
-import {enableValidation} from "./components/validate.js";
+    validationConfig} from "./utils.js";
+import {openPopup, closePopup, setEventListenersPopup} from "./modal.js";
+import {renderCards} from "./card.js";
+import {enableValidation} from "./validate.js";
 
 //отрисовка карточек из коробки
 renderCards(initialCards);
