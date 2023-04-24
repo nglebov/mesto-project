@@ -1,5 +1,5 @@
 export const templateCard = document.querySelector('#card-template');
-export const cardsConteiner = document.querySelector('.cards__list');
+export const cardsContainer = document.querySelector('.cards__list');
 
 //попап с формой изменения профиля
 export const popupEditProfile = document.querySelector('#popup-edit-profile');

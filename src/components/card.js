@@ -1,6 +1,6 @@
 import {
     templateCard,
-    cardsConteiner,
+    cardsContainer,
     popupImage,
     cardImage,
     descriptionImageCard} from "./utils.js";
@@ -23,22 +23,22 @@ function cloneTemplateCard() {
 }
 
 //функция открытия попапа изображения карточки
-export function openCardImage(places) {
-    cardImage.alt = places.name;
-    cardImage.src = places.link;
-    descriptionImageCard.textContent = places.name;
+export function openCardImage(place) {
+    cardImage.alt = place.name;
+    cardImage.src = place.link;
+    descriptionImageCard.textContent = place.name;
     openPopup(popupImage);
 }
 
 //навешиваем слушатели на элементы карточки
-function setEventListeners(card, places) {
+function setEventListeners(card, place) {
     const likeButton = card.querySelector('.card__like-button');
     likeButton.addEventListener('click', handleLikeButton);
     const deleteButton = card.querySelector('.card__delete-button');
     deleteButton.addEventListener('click', handleTrash);
     const cardImage = card.querySelector('.card__image');
     cardImage.addEventListener('click', () => {
-        openCardImage(places)
+        openCardImage(place)
     });
 }
 
@@ -57,6 +57,6 @@ export function createCard(place) {
 //функция отрисовка карточек в контейнере
 export function renderCards(cardsList) {
     cardsList.forEach((card) => {
-        cardsConteiner.prepend(createCard(card));
+        cardsContainer.prepend(createCard(card));
     });
 }

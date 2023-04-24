@@ -30,7 +30,7 @@ buttonEditProfile.addEventListener('click', () => {
 setEventListenersPopup(popupEditProfile);
 
 //функция изменения данных профиля
-function handleFormSubmit (evt) {
+function handleProfileFormSubmit (evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileDescription.textContent = jobInput.value;
@@ -38,9 +38,8 @@ function handleFormSubmit (evt) {
 }
 
 //форма изменения профиля
-const formElement = document.querySelector('.popup__form')
-formElement.addEventListener('submit', handleFormSubmit);
-
+const profileForm = popupEditProfile.querySelector('.popup__form')
+profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 //реализация работы попапа с формой добавления новой карточки
 const newCardButton = document.querySelector('.profile__add-button');
@@ -54,8 +53,7 @@ function addNewCard(event) {
     event.preventDefault();
     renderCards([{name: newPlaceName.value, link: newPlaceLink.value}]);
     closePopup(popupNewCard)
-    newPlaceName.value = "";
-    newPlaceLink.value = "";
+    this.reset();
 }
 
 //форма добавления новой карточки
