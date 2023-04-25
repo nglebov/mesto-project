@@ -10,10 +10,11 @@ import {
     popupNewCard,
     newPlaceName,
     newPlaceLink,
+    newPlaceSubmit,
     validationConfig} from "./utils.js";
 import {openPopup, closePopup, setEventListenersPopup} from "./modal.js";
 import {renderCards} from "./card.js";
-import {enableValidation} from "./validate.js";
+import {enableValidation, disabledButton} from "./validate.js";
 
 //отрисовка карточек из коробки
 renderCards(initialCards);
@@ -52,8 +53,9 @@ setEventListenersPopup(popupNewCard);
 function addNewCard(event) {
     event.preventDefault();
     renderCards([{name: newPlaceName.value, link: newPlaceLink.value}]);
-    closePopup(popupNewCard)
+    closePopup(popupNewCard);
     this.reset();
+    disabledButton(newPlaceSubmit, validationConfig);
 }
 
 //форма добавления новой карточки

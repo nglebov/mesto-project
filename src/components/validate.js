@@ -38,9 +38,13 @@ const toggleButtonState = (inputList, buttonElement, config) => {
         buttonElement.classList.add(config.inactiveButtonClass);
     } else {
         buttonElement.removeAttribute('disabled')
-        /*buttonElement.disabled = false;*/
         buttonElement.classList.remove(config.inactiveButtonClass);
     }
+};
+
+export const disabledButton = (buttonElement, config) => {
+        buttonElement.setAttribute('disabled', true)
+        buttonElement.classList.add(config.inactiveButtonClass);
 };
 
 function setEventListeners(formElement, config) {

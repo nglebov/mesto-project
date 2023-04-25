@@ -12,6 +12,7 @@ export const jobInput = document.querySelector('.popup__input_text_job')
 export const popupNewCard = document.querySelector('#popup-new-card');
 export const newPlaceName = popupNewCard.querySelector('.popup__input_place_name');
 export const newPlaceLink = popupNewCard.querySelector('.popup__input_place_link');
+export const newPlaceSubmit = popupNewCard.querySelector('.popup__button');
 //попап изображения карточки
 export const popupImage = document.querySelector('#popup-image-open');
 export const cardImage = popupImage.querySelector('.popup__image');
