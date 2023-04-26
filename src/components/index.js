@@ -14,7 +14,7 @@ import {
     validationConfig} from "./utils.js";
 import {openPopup, closePopup, setEventListenersPopup} from "./modal.js";
 import {renderCards} from "./card.js";
-import {enableValidation, disabledButton} from "./validate.js";
+import {enableValidation, disableButton} from "./validate.js";
 
 //отрисовка карточек из коробки
 renderCards(initialCards);
@@ -55,7 +55,7 @@ function addNewCard(event) {
     renderCards([{name: newPlaceName.value, link: newPlaceLink.value}]);
     closePopup(popupNewCard);
     this.reset();
-    disabledButton(newPlaceSubmit, validationConfig);
+    disableButton(newPlaceSubmit, validationConfig);
 }
 
 //форма добавления новой карточки
