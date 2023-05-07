@@ -17,15 +17,16 @@
     <main class="content">
       <section class="profile">
         <div class="profile__card">
-          <img class="profile__avatar" src="<%=require('./images/avatar.png')%>" alt="Фото">
+          <button class="profile__avatar"></button>
           <div class="profile__text">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <p class="profile__description">Исследователь океана</p>
+            <h1 class="profile__name"></h1>
+            <p class="profile__description"></p>
           </div>
           <button class="profile__edit-button transparent-button-hover" type="button"></button>
         </div>
         <button class="profile__add-button transparent-button-hover" type="button"></button>
       </section>
+
 
       <section class="cards">
         <ul class="cards__list">
@@ -52,7 +53,7 @@
     </template>
 
     <section id="popup-edit-profile" class="popup">
-      <div class="popup__conteiner">
+      <div class="popup__container">
         <button class="popup__close-button transparent-button-hover" type="button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form form-edit-profile" name="formprofile" id="form-edit-profile" novalidate>
@@ -72,8 +73,20 @@
       </div>
     </section>
 
+    <section id="popup-edit-avatar" class="popup">
+      <div class="popup__container">
+        <button class="popup__close-button transparent-button-hover" type="button"></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form class="popup__form" name="formavatar" novalidate>
+          <input type="url" id="avatar-url" class="popup__input popup__input_avatar_link" placeholder="Ссылка на картинку" required>
+          <span class="avatar-url-error popup__error"></span>
+          <button type="submit" class="popup__button">Сохранить</button>
+        </form>
+      </div>
+    </section>
+
     <section id="popup-new-card" class="popup">
-      <div class="popup__conteiner">
+      <div class="popup__container">
         <button class="popup__close-button transparent-button-hover" type="button"></button>
         <h2 class="popup__title">Новое место</h2>
         <form class="popup__form" name="formcard" novalidate>
@@ -90,7 +103,7 @@
     </section>
 
     <section id="popup-image-open" class="popup popup_image-overlay">
-      <div class="popup__image-conteiner">
+      <div class="popup__image-container">
         <button class="popup__close-button transparent-button-hover" type="button"></button>
         <img class="popup__image" src="#" alt="фото места">
         <p class="popup__image-description">Место</p>
