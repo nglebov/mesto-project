@@ -1,13 +1,11 @@
 export const templateCard = document.querySelector('#card-template');
 export const cardsContainer = document.querySelector('.cards__list');
 
-//попап с формой изменения профиля
 export const popupEditProfile = document.querySelector('#popup-edit-profile');
 export const profileName = document.querySelector('.profile__name');
 export const profileDescription = document.querySelector('.profile__description');
 export const nameInput = document.querySelector('.popup__input_text_name')
 export const jobInput = document.querySelector('.popup__input_text_job')
-
 //попап с формой изменения аватара
 export const popupEditAvatar = document.querySelector('#popup-edit-avatar');
 export const newAvatarLink = popupEditAvatar.querySelector('.popup__input_avatar_link');
@@ -32,7 +30,6 @@ export const validationConfig = {
     errorClass: 'popup__error_visible'
 };
 
-//UX кнопки сохранения
 export const renderLoading = (popup, isLoading = false) => {
     const button = popup.querySelector('.popup__button');
     if (isLoading) {
@@ -41,4 +38,3 @@ export const renderLoading = (popup, isLoading = false) => {
         button.textContent = 'Сохранить';
     }
 };
-

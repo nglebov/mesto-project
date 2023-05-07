@@ -3,17 +3,67 @@ import {
     cardsContainer,
     popupImage,
     cardImage,
-    descriptionImageCard} from "./utils.js";
-import {openPopup} from "./modal.js";
+    descriptionImageCard, renderLoading, popupNewCard, newPlaceName, newPlaceLink, newPlaceSubmit, validationConfig
+} from "./utils.js";
+import {closePopup, openPopup} from "./modal.js";
+import {addCard, deleteCard, toggleLikeStatus} from "./api.js";
+import {getUserId} from "./index.js";
+import {disableButton} from "./validate";
+
 
 //функция удаления карточки
-export function handleTrash(e) {
-    e.target.closest('.card').remove();
+export function handleTrashCard(card, cardId) {
+    const deleteButton = card.querySelector('.card__delete-button');
+    const removableCard = deleteButton.closest('.card');
+    deleteCard(cardId)
+        .then(() => {
+            removableCard.remove();
+            /*updateLikes(card, cardData.likes, currentUserId)*/;
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+}
+
+export function addNewCard(event) {
+    event.preventDefault();
+    renderLoading(popupNewCard, true);
+    addCard({name: newPlaceName.value, link: newPlaceLink.value})
+        .then((newCard) => {
+            renderNewCard(newCard);
+            closePopup(popupNewCard);
+            event.target.reset();
+        }).catch((err) => {
+        console.log(err)
+    })
+        .finally(() => {
+            renderLoading(popupNewCard);
+        })
+
+    disableButton(newPlaceSubmit, validationConfig);
 }
 
 //функция лайка карточки
-export function handleLikeButton(e) {
-    e.target.classList.toggle('card__like-button_active');
+const updateLikes = (card, likes, currentUserId) => {
+    const likeButton = card.querySelector('.card__like-button');
+    const likeCounter = card.querySelector('.card__like-count');
+    likeCounter.textContent = likes.length.toString();
+    const isLiked = Boolean(likes.find((item) => item._id === currentUserId));
+    likeButton.classList.toggle('card__like-button_active', isLiked)
+};
+
+export function handleLikeButton(card, cardId, currentUserId) {
+    const likeButton = card.querySelector('.card__like-button');
+    const isLiked = likeButton.classList.contains('card__like-button_active');
+    toggleLikeStatus(cardId, !isLiked)
+        .then((cardData) => {
+            updateLikes(card, cardData.likes, currentUserId);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
 }
 
 // Функция получения шаблона карточки
@@ -30,33 +80,53 @@ export function openCardImage(place) {
     openPopup(popupImage);
 }
 
-//навешиваем слушатели на элементы карточки
-function setEventListeners(card, place) {
-    const likeButton = card.querySelector('.card__like-button');
-    likeButton.addEventListener('click', handleLikeButton);
-    const deleteButton = card.querySelector('.card__delete-button');
-    deleteButton.addEventListener('click', handleTrash);
-    const cardImage = card.querySelector('.card__image');
-    cardImage.addEventListener('click', () => {
-        openCardImage(place)
-    });
-}
+
 
 // функция создания карточки
-export function createCard(place) {
+export function createCard({name, link, likes, owner, _id}) {
     const card = cloneTemplateCard();
     const cardTitle = card.querySelector('.card__title');
-    cardTitle.textContent = place.name;
     const cardImage = card.querySelector('.card__image');
-    cardImage.src = place.link;
-    cardImage.alt = place.name;
-    setEventListeners(card, place);
-    return card;
+    const likeButton = card.querySelector('.card__like-button');
+    const deleteButton = card.querySelector('.card__delete-button');
+
+    const currentUserId = getUserId();
+
+    cardTitle.textContent = name;
+    cardImage.src = link;
+    cardImage.alt = name;
+
+    if (owner._id !== currentUserId) {
+        deleteButton.style.display = "none";
+    }
+
+    updateLikes(card, likes, currentUserId);
+
+    likeButton.addEventListener('click', () => {
+        handleLikeButton(card, _id, currentUserId)
+    });
+
+    deleteButton.addEventListener('click', () => {
+        handleTrashCard(card, _id)
+    });
+
+    cardImage.addEventListener('click', () => {
+        openCardImage({name, link})
+    });
+
+    return card
 }
+
 
 //функция отрисовка карточек в контейнере
 export function renderCards(cardsList) {
     cardsList.forEach((card) => {
-        cardsContainer.prepend(createCard(card));
+        cardsContainer.append(createCard(card));
     });
 }
+
+export function renderNewCard(card) {
+    cardsContainer.prepend(createCard(card));
+}
+
+
