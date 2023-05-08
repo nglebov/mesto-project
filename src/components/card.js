@@ -13,12 +13,10 @@ import {disableButton} from "./validate";
 
 //функция удаления карточки
 export function handleTrashCard(card, cardId) {
-    const deleteButton = card.querySelector('.card__delete-button');
-    const removableCard = deleteButton.closest('.card');
+    const removableCard = card.closest('.card');
     deleteCard(cardId)
         .then(() => {
             removableCard.remove();
-            /*updateLikes(card, cardData.likes, currentUserId)*/;
         })
         .catch((err) => {
             console.log(err);
@@ -34,14 +32,13 @@ export function addNewCard(event) {
             renderNewCard(newCard);
             closePopup(popupNewCard);
             event.target.reset();
+            disableButton(newPlaceSubmit, validationConfig);
         }).catch((err) => {
         console.log(err)
     })
         .finally(() => {
             renderLoading(popupNewCard);
         })
-
-    disableButton(newPlaceSubmit, validationConfig);
 }
 
 //функция лайка карточки
@@ -63,7 +60,6 @@ export function handleLikeButton(card, cardId, currentUserId) {
         .catch((err) => {
             console.log(err);
         });
-
 }
 
 // Функция получения шаблона карточки
@@ -97,7 +93,7 @@ export function createCard({name, link, likes, owner, _id}) {
     cardImage.alt = name;
 
     if (owner._id !== currentUserId) {
-        deleteButton.style.display = "none";
+        deleteButton.remove();
     }
 
     updateLikes(card, likes, currentUserId);

@@ -1,8 +1,16 @@
 
-import {jobInput, nameInput, newAvatarLink, popupEditAvatar, popupEditProfile, renderLoading} from "./utils";
+import {
+    jobInput,
+    nameInput,
+    newAvatarLink, newAvatarSubmit,
+    popupEditAvatar,
+    popupEditProfile,
+    renderLoading, validationConfig
+} from "./utils";
 import {setUserAvatar, setUserInfo} from "./api";
 import {closePopup} from "./modal";
 import {updateUserInfo} from "./index";
+import {disableButton} from "./validate";
 
 
 export function handleProfileFormSubmit (evt) {
@@ -32,6 +40,7 @@ export function handleAvatarFormSubmit (evt) {
             updateUserInfo(newAvatar);
             closePopup(popupEditAvatar)
             evt.target.reset();
+            disableButton(newAvatarSubmit, validationConfig);
         })
         .catch((error) => {
             console.log(`Ошибка обновления аватара пользователя: ${error}`)

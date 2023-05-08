@@ -9,6 +9,7 @@ export const jobInput = document.querySelector('.popup__input_text_job')
 //попап с формой изменения аватара
 export const popupEditAvatar = document.querySelector('#popup-edit-avatar');
 export const newAvatarLink = popupEditAvatar.querySelector('.popup__input_avatar_link');
+export const newAvatarSubmit = popupEditAvatar.querySelector('.popup__button');
 export const profileAvatar = document.querySelector('.profile__avatar');
 
 //попап с формой добавления новой карточки
