@@ -31,11 +31,11 @@ export const validationConfig = {
     errorClass: 'popup__error_visible'
 };
 
-export const renderLoading = (popup, isLoading = false) => {
+export const renderLoading = (popup, isLoading = false, startText ='Сохранить') => {
     const button = popup.querySelector('.popup__button');
     if (isLoading) {
         button.textContent = 'Сохранение...';
     } else {
-        button.textContent = 'Сохранить';
+        button.textContent = startText;
     }
 };

@@ -26,7 +26,7 @@ export function handleTrashCard(card, cardId) {
 
 export function addNewCard(event) {
     event.preventDefault();
-    renderLoading(popupNewCard, true);
+    renderLoading(popupNewCard, true, 'Cоздать');
     addCard({name: newPlaceName.value, link: newPlaceLink.value})
         .then((newCard) => {
             renderNewCard(newCard);
@@ -37,7 +37,7 @@ export function addNewCard(event) {
         console.log(err)
     })
         .finally(() => {
-            renderLoading(popupNewCard);
+            renderLoading(popupNewCard, false, 'Cоздать');
         })
 }
 
