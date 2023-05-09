@@ -13,10 +13,9 @@ import {disableButton} from "./validate";
 
 //функция удаления карточки
 export function handleTrashCard(card, cardId) {
-    const removableCard = card.closest('.card');
     deleteCard(cardId)
         .then(() => {
-            removableCard.remove();
+            card.remove();
         })
         .catch((err) => {
             console.log(err);
